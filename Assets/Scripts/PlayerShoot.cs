@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
@@ -9,6 +7,7 @@ public class PlayerShoot : MonoBehaviour
 
     //testing values
     [SerializeField] private float range = 100f;
+    [SerializeField] private PlayerUI playerUI = null;
     #endregion
 
     #region PRIVATE_FIELDS
