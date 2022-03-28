@@ -8,16 +8,22 @@ public class PlayerShoot : MonoBehaviour
     //testing values
     [SerializeField] private float range = 100f;
     [SerializeField] private PlayerUI playerUI = null;
+    [SerializeField] private Gun gun = null;
     #endregion
 
     #region PRIVATE_FIELDS
-
+    private int currentAmmo = 0;
+    private int maxAmmo = 0;
     #endregion
 
     #region UNITY_CALLS
     private void Start()
     {
+        playerUI.Init();
 
+        currentAmmo = gun.CurrentAmmo;
+        maxAmmo = gun.MaxAmmo;
+        playerUI.onUpdateAmmo?.Invoke(currentAmmo.ToString(), maxAmmo.ToString());
     }
 
     private void Update()
@@ -40,7 +46,20 @@ public class PlayerShoot : MonoBehaviour
 
         if(Physics.Raycast(shootingCamera.transform.position, shootingCamera.transform.forward, out hit, range))
         {
+            currentAmmo--;
+            playerUI.onUpdateAmmo?.Invoke(currentAmmo.ToString(), null);
             Debug.Log(hit.transform.name);
+        }
+
+        Reload();
+    }
+
+    private void Reload()
+    {
+        if(currentAmmo <= 0)
+        {
+            currentAmmo = maxAmmo;
+            playerUI.onUpdateAmmo?.Invoke(currentAmmo.ToString(), null);
         }
     }
     #endregion

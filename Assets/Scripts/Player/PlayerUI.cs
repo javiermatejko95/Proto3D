@@ -13,11 +13,11 @@ public class PlayerUI : MonoBehaviour
     #endregion
 
     #region PRIVATE_FIELDS
-
+    private string maxAmmo = string.Empty;
     #endregion
 
     #region PUBLIC_ACTIONS
-    public Action<string> onShoot = null;
+    public Action<string, string> onUpdateAmmo = null;
     #endregion
 
     #region UNITY_CALLS
@@ -30,14 +30,22 @@ public class PlayerUI : MonoBehaviour
     #region INITIALIZATION
     public void Init()
     {
-        this.onShoot = OnShoot;
+        this.onUpdateAmmo = OnShoot;
     }
     #endregion
 
     #region PRIVATE_METHODS
-    private void OnShoot(string amount)
+    private void OnShoot(string currentAmmo, string maxAmmo)
     {
-        bulletsText.text = amount;
+        if(!string.IsNullOrEmpty(maxAmmo))
+        {
+            this.maxAmmo = maxAmmo;
+            bulletsText.text = currentAmmo + "/" + maxAmmo;
+        }
+        else
+        {            
+            bulletsText.text = currentAmmo + "/" + this.maxAmmo;
+        }
     }
     #endregion
 }
