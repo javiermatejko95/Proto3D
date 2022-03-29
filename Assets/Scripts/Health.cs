@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Health_", menuName = "Health/Entity", order = 0)]
+public class Health : ScriptableObject
+{
+    #region EXPOSED_FIELDS
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth = 100;
+    #endregion
+
+    #region PROPERTIES
+    public int MaxHealth { get => maxHealth; }
+    public int CurrentHealth { get => currentHealth; }
+    #endregion
+}
