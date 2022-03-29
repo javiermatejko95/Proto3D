@@ -12,22 +12,26 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region PRIVATE_FIELDS
-    private CharacterController cc = null;
+    private CharacterController characterController = null;
     private Vector3 velocity = new Vector3();
     private bool isGrounded = false;
     #endregion
 
     #region UNITY_CALLS
-    private void Start()
+
+    #endregion
+
+    #region INITIALIZATION
+    public void Init(CharacterController characterController)
     {
-        cc = this.GetComponent<CharacterController>();
+        this.characterController = characterController;
     }
 
-    private void Update()
+    public void Move()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0f)
+        if (isGrounded && velocity.y < 0f)
         {
             velocity.y = -2f;
         }
@@ -37,20 +41,16 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        cc.Move(move * speed * Time.deltaTime);
+        characterController.Move(move * speed * Time.deltaTime);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
         velocity.y += gravity * Time.deltaTime;
 
-        cc.Move(velocity * Time.deltaTime);
+        characterController.Move(velocity * Time.deltaTime);
     }
-    #endregion
-
-    #region INITIALIZATION
-
     #endregion
 }

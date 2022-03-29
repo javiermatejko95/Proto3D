@@ -36,7 +36,10 @@ public class PlayerShoot : MonoBehaviour
     #endregion
 
     #region INITIALIZATION
+    public void Init()
+    {
 
+    }
     #endregion
 
     #region PRIVATE_METHODS
