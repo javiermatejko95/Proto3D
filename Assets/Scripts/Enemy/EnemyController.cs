@@ -5,23 +5,23 @@ using UnityEngine;
 public class EnemyController : Entity
 {
     #region EXPOSED_FIELDS
-    //[Header("Config")]
-    //[Header("Components")]
-    //[Header("Scriptable Objects")]
-    #endregion
-
-    #region PRIVATE_FIELDS
-
-    #endregion
-
-    #region PUBLIC_ACTIONS
-
+    [SerializeField] private EnemyAI enemyAI = null;
+    [SerializeField] private Transform targetPlayer = null;
     #endregion
 
     #region UNITY_CALLS
     private void Update()
     {
 
+    }
+    #endregion
+
+    #region INITIALIZATION
+    public override void Init()
+    {
+        base.Init();
+
+        enemyAI.Init(targetPlayer);
     }
     #endregion
 

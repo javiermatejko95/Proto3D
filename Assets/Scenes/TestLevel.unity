@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 77464626}
   - component: {fileID: 77464628}
   - component: {fileID: 77464627}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -862,6 +862,7 @@ GameObject:
   - component: {fileID: 1011961651}
   - component: {fileID: 1011961650}
   - component: {fileID: 1011961652}
+  - component: {fileID: 1011961653}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -910,6 +911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 11400000, guid: 2e58abaef94c3f3438c681235164a2d6, type: 2}
+  enemyAI: {fileID: 1011961653}
+  targetPlayer: {fileID: 1205316785}
 --- !u!136 &1011961652
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -924,6 +927,31 @@ CapsuleCollider:
   m_Height: 3.3606858
   m_Direction: 1
   m_Center: {x: 0, y: 0.41235352, z: -0.0003709793}
+--- !u!114 &1011961653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011961648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b00b34eee804a48bf4d83272900402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  AISTATE: 0
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 10
+  timeBetweenAttacks: 1
+  sightRange: 20
+  attackRange: 2
+  timeBetweenChecks: 0.5
 --- !u!1 &1045289244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,7 +1123,7 @@ GameObject:
   - component: {fileID: 1143737603}
   - component: {fileID: 1143737602}
   - component: {fileID: 1143737601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1189,7 +1217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1156764863}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1327,7 +1355,7 @@ GameObject:
   - component: {fileID: 1205316788}
   - component: {fileID: 1205316786}
   - component: {fileID: 1205316787}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1434,7 +1462,7 @@ GameObject:
   - component: {fileID: 1275022350}
   - component: {fileID: 1275022349}
   - component: {fileID: 1275022348}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1876,7 +1904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1624373097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2066,7 +2094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2066278911}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
