@@ -12,8 +12,6 @@ public class PlayerController : Entity
     [SerializeField] private PlayerUI playerUI = null;
     [SerializeField] private PlayerShoot playerShoot = null;
     [SerializeField] private MouseLook mouseLook = null;
-    [Header("Scriptable Objects")]
-    [SerializeField] private Gun selectedGun = null;
     #endregion
 
     #region PRIVATE_FIELDS
@@ -25,13 +23,6 @@ public class PlayerController : Entity
     #endregion
 
     #region UNITY_CALLS
-    private void Start()
-    {
-        this.Init();
-        playerMovement.Init(characterController);
-        playerUI.Init();
-    }
-
     private void Update()
     {
         playerMovement.Move();
@@ -42,6 +33,9 @@ public class PlayerController : Entity
     public override void Init()
     {
         base.Init();
+        playerMovement.Init(characterController);
+        playerUI.Init();
+        playerShoot.Init(playerUI);
     }
     #endregion
 

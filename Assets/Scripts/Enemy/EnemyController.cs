@@ -19,11 +19,6 @@ public class EnemyController : Entity
     #endregion
 
     #region UNITY_CALLS
-    private void Start()
-    {
-        this.Init();
-    }
-
     private void Update()
     {
 

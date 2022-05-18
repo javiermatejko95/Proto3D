@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region EXPOSED_FIELDS
+    [SerializeField] private PlayerController playerController = null;
+    [SerializeField] private EnemyController enemyController = null;
+    #endregion
 
-    // Update is called once per frame
-    void Update()
+    #region UNITY_CALLS
+    private void Start()
     {
-        
+        playerController.Init();
+        enemyController.Init();
     }
+    #endregion
 }

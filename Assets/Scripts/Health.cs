@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Health_", menuName = "Health/Entity", order = 0)]
+[CreateAssetMenu(fileName = "Health_", menuName = "Entity/Health", order = 0)]
 public class Health : ScriptableObject
 {
     #region EXPOSED_FIELDS

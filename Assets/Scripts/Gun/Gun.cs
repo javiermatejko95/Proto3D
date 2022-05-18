@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Gun_", menuName = "Gun/Handgun", order = 0)]
+[CreateAssetMenu(fileName = "Gun_", menuName = "Entity/Gun", order = 0)]
 public class Gun : ScriptableObject
 {
     #region EXPOSED_FIELDS
