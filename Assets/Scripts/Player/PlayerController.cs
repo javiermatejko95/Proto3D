@@ -10,7 +10,7 @@ public class PlayerController : Entity
     [Header("Components")]
     [SerializeField] private PlayerMovement playerMovement = null;
     [SerializeField] private PlayerUI playerUI = null;
-    [SerializeField] private PlayerShoot playerShoot = null;
+    [SerializeField] private PlayerShootController playerShootController = null;
     [SerializeField] private MouseLook mouseLook = null;
     #endregion
 
@@ -35,7 +35,7 @@ public class PlayerController : Entity
         base.Init();
         playerMovement.Init(characterController);
         playerUI.Init();
-        playerShoot.Init(playerUI);
+        playerShootController.Init(playerUI);
     }
     #endregion
 

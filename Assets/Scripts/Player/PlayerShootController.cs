@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShootController : MonoBehaviour
 {
     #region EXPOSED_FIELDS
     [SerializeField] private Camera shootingCamera = null;
@@ -16,6 +16,7 @@ public class PlayerShoot : MonoBehaviour
     #endregion
 
     #region UNITY_CALLS
+    //TODO: disparar con un action y suscribirle el action correspondiente dependiendo del tipo de arma seleccionada
     private void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -42,19 +43,17 @@ public class PlayerShoot : MonoBehaviour
 
         if (Physics.Raycast(shootingCamera.transform.position, shootingCamera.transform.forward, out hit, gun.Range))
         {
-            currentAmmo--;
-            playerUI.onUpdateAmmo?.Invoke(currentAmmo.ToString(), null);
-
             switch(hit.transform.tag)
             {
-                case "Enemy":
+                case EntityConstants.Enemy:
                     EnemyController enemyController = hit.transform.GetComponent<EnemyController>();
                     enemyController.onDamaged?.Invoke(gun.DamageAmount);
                     break;
             }        
             Debug.Log(hit.transform.name);
         }
-
+        currentAmmo--;
+        playerUI.onUpdateAmmo?.Invoke(currentAmmo.ToString(), null);
         Reload();
     }
 
