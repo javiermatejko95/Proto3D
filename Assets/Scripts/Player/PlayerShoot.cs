@@ -21,14 +21,14 @@ public class PlayerShoot : MonoBehaviour
     {
         playerUI.Init();
 
-        currentAmmo = gun.CurrentAmmo;
         maxAmmo = gun.MaxAmmo;
+        currentAmmo = maxAmmo;
         playerUI.onUpdateAmmo?.Invoke(currentAmmo.ToString(), maxAmmo.ToString());
     }
 
     private void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
         }
@@ -47,10 +47,16 @@ public class PlayerShoot : MonoBehaviour
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(shootingCamera.transform.position, shootingCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(shootingCamera.transform.position, shootingCamera.transform.forward, out hit, range))
         {
             currentAmmo--;
             playerUI.onUpdateAmmo?.Invoke(currentAmmo.ToString(), null);
+
+            if(hit.transform.tag == "Enemy")
+            {
+                EnemyController enemyController = hit.transform.GetComponent<EnemyController>();
+                enemyController.onDamaged?.Invoke(gun.DamageAmount);
+            }            
             Debug.Log(hit.transform.name);
         }
 
@@ -59,7 +65,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reload()
     {
-        if(currentAmmo <= 0)
+        if (currentAmmo <= 0)
         {
             currentAmmo = maxAmmo;
             playerUI.onUpdateAmmo?.Invoke(currentAmmo.ToString(), null);

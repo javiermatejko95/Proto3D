@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
     #region EXPOSED_FIELDS
     [Header("Config")]
@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerShoot playerShoot = null;
     [SerializeField] private MouseLook mouseLook = null;
     [Header("Scriptable Objects")]
-    [SerializeField] private Health playerHealth = null;
     [SerializeField] private Gun selectedGun = null;
     #endregion
 
@@ -28,6 +27,7 @@ public class PlayerController : MonoBehaviour
     #region UNITY_CALLS
     private void Start()
     {
+        this.Init();
         playerMovement.Init(characterController);
         playerUI.Init();
     }
@@ -39,9 +39,9 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region INITIALIZATION
-    public void Init()
+    public override void Init()
     {
-
+        base.Init();
     }
     #endregion
 
